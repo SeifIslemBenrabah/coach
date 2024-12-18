@@ -2,6 +2,7 @@ const express = require('express');
 const Authjwt = require('../middleware/authjwt.js');
 const router = express.Router();
 const {createuser,getusers,getuser,updateuser,deleteuser} =require('../controllers/user.controller.js')
+
 //add
 router.post('/',Authjwt(),createuser)
 //get all
