@@ -5,6 +5,10 @@ const fileSchema = new Schema({
         type:String,
         required:true
     },
+    type:{
+        type:String,
+        enum:['Régime','Entraînement']
+    },
     user:{
         type:Schema.Types.ObjectId,
         ref:'User'

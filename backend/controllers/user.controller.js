@@ -47,7 +47,7 @@ const updateuser = async (req,res)=>{
         if(!user){
           return res.status(404).json({msg:"there is no user with this id"})
         }
-        await user.set(req.body)
+        await User.findByIdAndUpdate(id,req.body)
         res.status(200).json({msg:"user is updated "})
     }catch(err){
       console.log(err)
@@ -58,16 +58,13 @@ const deleteuser = async (req, res) => {
     try {
       const { id } = req.params; 
       console.log(`Attempting to delete user with ID: ${id}`);
-      const user = await User.findOne({
-        where: { id: id },
-      });
-  
+      const user = await User.findById(id);
       if (!user) {
         return res.status(404).json({ msg: 'This user does not exist' });
       }
   
       // Delete the user
-      await user.destroy();
+      await User.findByIdAndDelete(id)
       res.status(200).json({ msg: 'User is deleted !!' });
     } catch (err) {
       console.error('Error occurred while deleting user:', err); 
