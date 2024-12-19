@@ -14,6 +14,11 @@ const coachSchema = new Schema(
         password:{
             type:String,
             required:true
+        },
+        role:{
+            type:String,
+            enum:['Coach'],
+            default:'Coach'
         }
     }
 )

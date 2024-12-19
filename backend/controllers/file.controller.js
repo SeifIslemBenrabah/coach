@@ -1,6 +1,7 @@
 const File = require('../modules/file.model')
 const User = require('../modules/user.model')
 const path = require('path');
+const fs = require('fs');
 //add
 const addfile = async (req, res) => {
     try {
@@ -12,6 +13,10 @@ const addfile = async (req, res) => {
         const userID = await User.findById(user)
         if(!userID){
             return res.status(404).json({msg:"there is no user"})
+        }
+        const existingFile = await File.findOne({ user, type });
+        if (existingFile) {
+            return res.status(400).json({ msg: "File of this type already exists for the user" });
         }
         const file = await File.create({filepath,type,user});
         await User.findByIdAndUpdate(user, {
@@ -29,32 +34,17 @@ const addfile = async (req, res) => {
 //get
 const getfile = async (req, res) => {
     try {
-        const {id} = req.params;  // `userId` is passed as the first parameter, `fileId` is the second
-
-        // Find the user
+        const {id} = req.params; 
         const user = await User.findById(id);
         if (!user) {
             return res.status(404).json({ msg: "User not found" });
         }
-
-        // Find the file for the specific user
-        const file = await File.findOne({ user: id });
+        const file = await File.find({ user: id });
         if (!file) {
             return res.status(404).json({ msg: "File not found for this user" });
-        }
-
-        // Set response headers and send the file
-        res.set({
-            'Content-Type': 'multipart/form-data',
-            'X-Custom-Header': 'CustomHeaderValue',
-        });
-
-        const filePath = path.join('C:/Users/admin/Desktop/DEV/coach/backend/', file.filepath);  // Corrected file path
-        res.sendFile(filePath, (err) => {
-            if (err) {
-                res.status(500).json({ msg: "Error sending the file." });
-            }
-        });
+        };
+        console.log(file);
+        res.status(203).json(file)
     } catch (err) {
         res.status(500).json({ msg: "Error fetching file", error: err });
     }
@@ -73,20 +63,36 @@ const updatefile = async(req,res)=>{
         res.status(500).json({msg:err})
     }
 }
-const deletefile = async(req,res)=>{
-    try{
-        const {id} = req.params
-        const file = await File.findById(id)
-        if(!file){
-            res.status(404).json({msg:"there is no fiche with this id"})
+const deletefile = async (req, res) => {
+    try {
+        const { id } = req.params;
+        
+        // Find the file in the database
+        const file = await File.findById(id);
+        if (!file) {
+            return res.status(404).json({ msg: "There is no file with this ID" });
         }
-        await File.findByIdAndDelete(id)
-        res.status(200).json({msg:"the file is deleted"})
+
+        // Construct the full file path
+        const filePath = path.join("C:\\Users\\admin\\Desktop\\DEV\\coach\\backend\\", file.filepath);
+
+        // Delete the file from the filesystem
+        fs.unlink(filePath, async (err) => {
+            if (err) {
+                console.error('Failed to delete file:', err);
+                return res.status(500).json({ error: 'Failed to delete file from server',filePath });
+            }
+
+            // Delete the file record from the database
+            await File.findByIdAndDelete(id);
+            return res.status(200).json({ message: 'File deleted successfully' });
+        });
+    } catch (err) {
+        console.error('Error deleting file:', err);
+        res.status(500).json({ msg: "Server error", error: err });
     }
-    catch(err){
-        res.status(500).json({msg:err})
-    }
-}
+};
+
 module.exports = {
     addfile,
     updatefile,

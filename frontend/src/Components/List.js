@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { AuthData } from '../Auth/AuthWrapper';
 
 const List = () => {
+  const { logout } = AuthData();
   const navigate = useNavigate();
   const [listusers, setusers] = useState([]);
   const [open, setopen] = useState(false);
@@ -104,9 +105,21 @@ const List = () => {
   const navigateToDetails = (id) => {
     navigate(`/${id}`);
   };
+  const handleLogout = () => {
+    logout(); // Call the logout function from AuthContext
+    navigate('/'); // Redirect to the login page
+};
   return (
     <div className="flex flex-col">
-      <div className="fixed w-full flex flex-row justify-between bg-OffWhite p-6">
+      <div className="bg-primary text-center p-4">
+        <p className="text-white font-montserrat font-semibold text-3xl">Logo</p>
+        <button onClick={handleLogout} className='fixed right-4 top-4 flex flex-row items-center text-white'>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+        </svg>
+        </button>
+      </div>
+      <div className="fixed top-[71px] w-full flex flex-row justify-between bg-OffWhite p-6">
         <div className="flex gap-2">
           <button className="bg-white border-[1px] rounded-md px-1">
             <svg
@@ -171,7 +184,7 @@ const List = () => {
           Ajouter client
         </button>
       </div>
-      <div className="mt-28 pl-4 bg-OffWhite w-full table-container">
+      <div className="mt-40 pl-4 bg-OffWhite w-full table-container">
         <table className="w-full custom-table border-collapse">
           <thead>
             <tr className="font-semibold">

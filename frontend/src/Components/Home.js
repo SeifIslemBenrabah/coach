@@ -45,8 +45,7 @@ const Home = () => {
         <div className='top-0 h-14 bg-primary flex flex-row justify-between items-center px-12 fixed w-full rounded-b-md'>
             <div className='text-white font-extrabold'>Logo</div>
             <div className='flex flex-row gap-6 items-center'>
-                <a href='/login' className='text-OffWhite'>Login</a>
-                <a href='/signup' className='bg-OffWhite p-1 rounded-md flex flex-row justify-center items-center'>Sign up</a>
+                <a href='/login' className='bg-OffWhite p-1 rounded-md flex flex-row justify-center items-center font-bold text-primary font-montserrat'>Login</a>
             </div>
         </div>
         <div className='flex flex-row justify-between top-20 fixed z-20'>
