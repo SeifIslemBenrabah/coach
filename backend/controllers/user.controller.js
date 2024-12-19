@@ -84,7 +84,7 @@ if(user){
       const match = await bcrypt.compare(req.body.password, user.password);
       if (match) {
         const accessToken = jwt.sign({ email: user.email}, process.env.ACCESS_TOKEN_SECRET);
-        res.json({ accessToken: accessToken });
+        res.json({ accessToken: accessToken ,role:user.role,id:user.id});
       } else {
         res.status(403).send('Invalid credentials');
       }}
@@ -92,7 +92,7 @@ if(user){
         const match = await bcrypt.compare(req.body.password, coach.password);
       if (match) {
         const accessToken = jwt.sign({ email: coach.email}, process.env.ACCESS_TOKEN_SECRET);
-        res.json({ accessToken: accessToken });
+        res.json({ accessToken: accessToken,role:coach.role });
       } else {
         res.status(403).send('Invalid credentials');
       }

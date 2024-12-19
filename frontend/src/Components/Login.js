@@ -1,10 +1,10 @@
 import React, { useState, useReducer } from 'react';
 import Gym from '../assets/Gym.png'
-import { useNavigate } from 'react-router-dom';
+
 import { AuthData } from "../Auth/AuthWrapper";
 
 const Login = () => {
-  const navigate = useNavigate();
+  
   const { login } = AuthData();
   const [formData, setFormData] = useReducer(
     (formData, newItem) => ({ ...formData, ...newItem }),
@@ -16,7 +16,6 @@ const Login = () => {
     e.preventDefault(); 
     try {
       await login(formData.email, formData.password);
-      navigate("/list"); 
     } catch (error) {
       setErrorMessage(error.message || "An error occurred during login.");
     }

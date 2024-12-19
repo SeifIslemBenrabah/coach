@@ -12,9 +12,10 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage });
 const Authjwt = require('../middleware/authjwt.js');
-const { addfile,getfile} = require('../controllers/file.controller.js')
+const { addfile,getfile,deletefile} = require('../controllers/file.controller.js')
 //add
 router.post('/',Authjwt(),upload.single('file'),addfile)
 //getfilesofuser
 router.get('/:id',getfile)
+router.delete('/:id',deletefile)
 module.exports = router
