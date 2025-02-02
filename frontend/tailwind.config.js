@@ -11,11 +11,11 @@ module.exports = {
         lg: '3px 3px 6px rgba(0, 0, 0, 0.25)',
       },
       colors: {
-        primary: '#2C5FDF',
-        secondary: '#2A3644',
-        Sky: '#D7EAFF',
-        Mint: '#48A9A6',
-        OffWhite: '#F8F9FA',
+        primary: '#004F39',
+        secondary: '#EAE9E7',
+        blackk: '#151513',
+        OffWhite: '#FEFACA',
+        gry:'#555450'
       },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
