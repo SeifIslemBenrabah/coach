@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { MapPin, Star, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import heroVideo from '../assets/hero.mp4';
 import mainImage from '../assets/ahmed.jpg';
 import './Hero.css';
 
@@ -48,7 +47,7 @@ export default function Hero() {
           playsInline
           className="hero-img"
         >
-          <source src={heroVideo} type="video/mp4" />
+          <source src="https://www.pexels.com/download/video/33515044/" type="video/mp4" />
         </video>
       </div>
 
