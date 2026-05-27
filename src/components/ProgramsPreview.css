@@ -1,0 +1,116 @@
+.programs-preview {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  padding: 8rem 0;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.programs-info {
+  max-width: 450px;
+}
+
+.programs-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 2rem;
+}
+
+.programs-desc {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.programs-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.2rem;
+}
+
+.prog-card {
+  background-color: var(--color-bg-card);
+  padding: 2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--color-border);
+  min-height: 200px;
+}
+
+.prog-card:hover {
+  background-color: var(--color-bg-card-hover);
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.prog-card-tall {
+  grid-row: 1 / 3;
+}
+
+.prog-card h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.prog-card p {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: auto;
+}
+
+.prog-card .prog-detail {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 3rem;
+}
+
+.prog-card-img {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.prog-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.prog-card-img:hover img {
+  transform: scale(1.05);
+}
+
+.prog-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}

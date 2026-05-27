@@ -1,0 +1,77 @@
+.ba-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: ew-resize;
+  user-select: none;
+  background: var(--color-bg-base);
+  direction: ltr;
+  /* Force LTR for the slider math */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.ba-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ba-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.ba-image-after {
+  z-index: 1;
+}
+
+.ba-image-before {
+  z-index: 2;
+  /* clip-path handled via React inline style */
+}
+
+.ba-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 3;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ba-slider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ba-slider-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s;
+}
+
+.ba-container:hover .ba-slider-button {
+  transform: scale(1.1);
+}

@@ -1,0 +1,43 @@
+.bg-light {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.stat-item h3 {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  letter-spacing: -2px;
+}
+
+.stat-item .stat-label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.stat-item .stat-sub {
+  color: #666666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
