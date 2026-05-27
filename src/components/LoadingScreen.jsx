@@ -30,8 +30,14 @@ export default function LoadingScreen({ onComplete }) {
           <div 
             className="loading-logo-fill"
             style={{
-              WebkitMask: `url(${Logo}) no-repeat center / contain`,
-              mask: `url(${Logo}) no-repeat center / contain`
+              WebkitMaskImage: `url("${Logo}")`,
+              WebkitMaskSize: 'contain',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center',
+              maskImage: `url("${Logo}")`,
+              maskSize: 'contain',
+              maskRepeat: 'no-repeat',
+              maskPosition: 'center'
             }}
           ></div>
         </div>
