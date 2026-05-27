@@ -1,0 +1,61 @@
+.loading-screen-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-bg-base, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease-out;
+  opacity: 1;
+}
+
+.loading-screen-container.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-logo-wrapper {
+  position: relative;
+  width: clamp(150px, 30vw, 300px);
+}
+
+.loading-logo-base {
+  width: 100%;
+  display: block;
+  opacity: 0.15;
+  filter: grayscale(100%) brightness(200%);
+}
+
+.loading-logo-fill-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  overflow: hidden;
+  animation: fillFromLeft 2s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.loading-logo-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(150px, 30vw, 300px); /* Must match wrapper width */
+  height: 100%;
+  background-color: var(--color-accent, #ff4d00);
+  -webkit-mask: url('../assets/Logo.svg') no-repeat center / contain;
+  mask: url('../assets/Logo.svg') no-repeat center / contain;
+}
+
+@keyframes fillFromLeft {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
