@@ -43,7 +43,6 @@ export default function Hero() {
           autoPlay
           muted
           loop
-          controls
           playsInline
           className="hero-img"
         >
