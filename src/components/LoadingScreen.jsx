@@ -27,7 +27,13 @@ export default function LoadingScreen({ onComplete }) {
       <div className="loading-logo-wrapper">
         <img src={Logo} alt="Loadoing Base" className="loading-logo-base" />
         <div className="loading-logo-fill-wrapper">
-          <div className="loading-logo-fill"></div>
+          <div 
+            className="loading-logo-fill"
+            style={{
+              WebkitMask: `url(${Logo}) no-repeat center / contain`,
+              mask: `url(${Logo}) no-repeat center / contain`
+            }}
+          ></div>
         </div>
       </div>
     </div>
